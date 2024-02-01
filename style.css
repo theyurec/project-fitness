@@ -24,6 +24,7 @@
 
 :root {
     --color-dark: #000000;
+    --color-dark-alternative: #131619;
     --color-light: #ffffff;
     --color-dark-gray: #404040;
     --color-light-gray: #c4c4c4;
@@ -59,6 +60,11 @@ body {
     padding-inline: var(--container-padding-x);
 }
 
+.container-wide {
+    max-width: 1920px;
+    margin-inline: auto;
+  }
+
 a, button, input, textarea, svg * {
     transition-duration: var(--transition-duration);
 }
@@ -76,12 +82,99 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
+.button {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding-inline: 26px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 2;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: var(--color-light);
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.button:hover {
+
+}
+
+.button.transparent {
+    position: relative;
+    height: var(--input-height);
+    padding-left: 31px;
+    padding-right: 80px;
+    background-color: transparent;
+    border: var(--border);
+}
+
+.button.transparent::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1;
+    background: url('./icons/arrow-top-right.svg') center/70% no-repeat;
+    border: var(--border);
+    border-radius: 50%;
+  }
+  
+  .button.transparent:hover {
+    color: var(--color-dark);
+    background-color: var(--color-light-gray);
+  }
+
+.title-medium {
+    font-size: clamp(20px, 2.08vw, 40px);
+    line-height: 1.3;
+    color: var(--color-light);
+}
+
+.backdrop-title {
+    position: relative;
+    z-index: 2;
+}
+
+.backdrop-title::before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: calc(100% + 8px);
+    width: 26px;
+    aspect-ratio: 1;
+    background: url('/icons/plus.svg') center/contain no-repeat;
+}
+
+.backdrop-title::after {
+    content: attr(data-title);
+    position: absolute;
+    z-index: -1;
+    top: -0.3em;
+    left: -0.6em;
+    font-family: var(--font-family-accent);
+    font-size: 2.8em;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-light-gray);
+}
+
+.backdrop-title.centered::after {
+    top: -0.25em;
+    left: 50%;
+    translate: -50% 0;
+  }
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: var(--header-hight);
     padding-inline: 32px;
+    background-color: var(--color-dark-alternative);
 }
 
 .logo {
@@ -173,6 +266,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     justify-content: end;
     color: var(--color-light);
+    background-color: var(--color-dark-alternative);
 }
 
 .banner-body {
@@ -236,6 +330,104 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--color-light-gray);
 }
 
+
+
+
+/* ===========================MOTIVATION====================================== */
+.motivation {
+
+}
+.motivation-list {
+
+}
+.motivation-item {
+}
+
+.motivation-item:nth-child(even) {
+    background-color: var(--color-dark-alternative);
+}
+
+.motivation-item:nth-child(even) .motivation-card {
+    flex-direction: row-reverse;
+}
+
+.motivation-card {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: clamp(30px, 10.42vw, 200px);
+}
+
+.motivation-body {
+    padding-left: 35px;
+} 
+
+.motivation-card-title:not(:last-child) {
+    margin-bottom: 14px;
+  }
+.backdrop-title {
+}
+
+.motivation-card-description {
+    max-width: 400px;
+    margin-bottom: 37px;
+}
+
+.motivation-card-button {
+}
+.button {
+}
+.transparent {
+}
+.motivation-card-img {
+    margin-block: -60px;
+}
+
+
+/* =================TRAINING TYPES=========================== */
+
+.training-types {
+    position: relative;
+    background-color: var(--color-dark);
+    padding-top: 70px;
+    padding-bottom: 120px;
+
+}
+.training-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 60px;
+}
+.training-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    background: url(/icons/arrow-bottom-right.svg) 100% 0/80px no-repeat;
+    row-gap: 32px;
+}
+.training-item-image {
+
+}
+.training-item-title {
+    font-size: 16px;
+}
+
+@media (max-width: 1919px) {
+    .motivation-card-img {
+        margin-block: -20px;
+        height: auto;
+    }
+
+}
+
+@media (max-width: 1280px) {
+    .training-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
     .header {
         flex-wrap: wrap;
@@ -255,6 +447,20 @@ h1, h2, h3, h4, h5, h6 {
 
     .header-menu-link {
         height: 50px;
+    }
+
+    .motivation-card {
+        padding-block: 50px;
+    }
+
+    .motivation-card-img {
+        margin-block: 0px;
+        max-width: 30%;
+        height: auto;
+    }
+    .training-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -277,4 +483,24 @@ h1, h2, h3, h4, h5, h6 {
     .banner-info::before {
         margin-right: 10px;
     }
+    .motivation-card,
+    .motivation-item:nth-child(even) .motivation-card {
+        flex-direction: column-reverse;
+    }
+
+    .motivation-card-img {
+        max-width: 60%;
+    }
+
+    .motivation-card {
+        row-gap: 30px;
+        padding-block: 30px;
+    }
+    .training-item {
+        background: url(/icons/arrow-bottom-right.svg) 100% 0/50px no-repeat;
+        row-gap: 10px;
+    }
+    /* .training-item-image {
+        max-width: 120px;
+    } */
 }
